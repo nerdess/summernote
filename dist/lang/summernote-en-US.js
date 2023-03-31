@@ -7,7 +7,7 @@
  * Copyright 2013- Alan Hong and contributors
  * Summernote may be freely distributed under the MIT license.
  *
- * Date: 2023-03-17T10:30Z
+ * Date: 2023-03-31T08:01Z
  *
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -19,7 +19,7 @@
 		var a = typeof exports === 'object' ? factory(require("jquery")) : factory(root["jquery"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(self, function(__WEBPACK_EXTERNAL_MODULE__4886__) {
+})(self, (__WEBPACK_EXTERNAL_MODULE__4886__) => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({

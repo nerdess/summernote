@@ -7,7 +7,7 @@
  * Copyright 2013- Alan Hong and contributors
  * Summernote may be freely distributed under the MIT license.
  *
- * Date: 2023-03-17T10:30Z
+ * Date: 2023-03-31T08:01Z
  *
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -19,7 +19,7 @@
 		var a = typeof exports === 'object' ? factory(require("jquery")) : factory(root["jquery"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(self, function(__WEBPACK_EXTERNAL_MODULE__4886__) {
+})(self, (__WEBPACK_EXTERNAL_MODULE__4886__) => {
 return /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
@@ -5320,7 +5320,7 @@ var Editor = /*#__PURE__*/function () {
 
       if (isTextChanged) {
         rng = rng.deleteContents();
-        var anchor = rng.insertNode(external_root_jquery_commonjs_jquery_commonjs2_jquery_amd_jquery_default()('<A>' + linkText + '</A>')[0]);
+        var anchor = rng.insertNode(external_root_jquery_commonjs_jquery_commonjs2_jquery_amd_jquery_default()('<A></A>').text(linkText)[0]);
         anchors.push(anchor);
       } else {
         anchors = _this.style.styleNodes(rng, {
@@ -5408,6 +5408,8 @@ var Editor = /*#__PURE__*/function () {
       } else {
         $target = external_root_jquery_commonjs_jquery_commonjs2_jquery_amd_jquery_default()(_this.restoreTarget()).detach();
       }
+
+      _this.setLastRange(range.createFromSelection($target).select());
 
       _this.context.triggerEvent('media.delete', $target, _this.$editable);
     });
@@ -6297,17 +6299,17 @@ var Clipboard = /*#__PURE__*/function () {
       var clipboardData = event.originalEvent.clipboardData;
 
       if (clipboardData && clipboardData.items && clipboardData.items.length) {
-        var item = clipboardData.items.length > 1 ? clipboardData.items[1] : lists.head(clipboardData.items);
+        var clipboardFiles = clipboardData.files;
+        var clipboardText = clipboardData.getData('Text'); // paste img file
 
-        if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
-          // paste img file
-          this.context.invoke('editor.insertImagesOrCallback', [item.getAsFile()]);
+        if (clipboardFiles.length > 0) {
+          this.context.invoke('editor.insertImagesOrCallback', clipboardFiles);
           event.preventDefault();
-        } else if (item.kind === 'string') {
-          // paste text with maxTextLength check
-          if (this.context.invoke('editor.isLimited', clipboardData.getData('Text').length)) {
-            event.preventDefault();
-          }
+        } // paste text with maxTextLength check
+
+
+        if (clipboardText.length > 0 && this.context.invoke('editor.isLimited', clipboardText.length)) {
+          event.preventDefault();
         }
       } else if (window.clipboardData) {
         // for IE

@@ -7,7 +7,7 @@
  * Copyright 2013- Alan Hong and contributors
  * Summernote may be freely distributed under the MIT license.
  *
- * Date: 2023-03-17T10:30Z
+ * Date: 2023-03-31T08:01Z
  *
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -19,7 +19,7 @@
 		var a = factory();
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(self, function() {
+})(self, () => {
 return /******/ (() => { // webpackBootstrap
 var __webpack_exports__ = {};
 (function ($) {
@@ -57,7 +57,7 @@ var __webpack_exports__ = {};
         maximumFileSizeError: 'Maximum file size exceeded.',
         url: 'آدرس تصویر',
         remove: 'حذف تصویر',
-        original: 'Original'
+        original: 'اصلی'
       },
       video: {
         video: 'ویدیو',
@@ -135,7 +135,7 @@ var __webpack_exports__ = {};
         action: 'عملیات',
         paragraphFormatting: 'فرمت پاراگراف',
         documentStyle: 'استیل سند',
-        extraKeys: 'Extra keys'
+        extraKeys: 'کلیدهای اضافی'
       },
       help: {
         'insertParagraph': 'افزودن پاراگراف',
